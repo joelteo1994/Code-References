@@ -1,0 +1,8 @@
+## Spark: framework for big data processing. Can work with large datasets using distributed storage and compute 
+
+# Example Spark setup 
+import pyspark
+sc = pyspark.SparkContext()
+
+rdd = sc.parallelize([1, 2, 3])
+print(rdd.collect())
