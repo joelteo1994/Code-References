@@ -87,3 +87,16 @@ df.to_csv(
     errors='strict',       # Error handling for bad encoding (strict, replace, etc.)
     storage_options=None   # Extra options for remote file systems
 )
+
+## exceptions 
+  # Assign a new variable pointing to the sum 
+  total = s.sum()  
+  
+  # Update the variable with an expression
+  total += 10  
+  
+  # Raise a pandas AttributeError exception
+  try:
+      s.no_such_attribute() 
+  except AttributeError:
+      print("Oops! That attribute doesn't exist")
