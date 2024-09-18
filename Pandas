@@ -1,3 +1,8 @@
+## Core of pandas 
+        # can define a function e.g. process(x): return x+1, then df.apply(process, axis=0). Very fast 
+        # vs in python: have to add via a for loop (e.g. for i in range(1,10): ...) 
+        # in Big data situations, may not be able to use regular python pandas library as data structure is memory intensive. Hence can use Spark 
+
 import pandas as pd
 
 # Create a Pandas DataFrame 
