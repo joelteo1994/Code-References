@@ -34,7 +34,7 @@ pip list
 
 +++ 
 
-# Create virtual environment 
+# Create virtual environment to manage dependencies specific to project and avoid conflict between global and project-level packages 
 python3 -m venv my_env
 
 # Activate virtual environment
@@ -57,8 +57,35 @@ deactivate
 
 #1. Type:
 pip freeze > requirements.txt
-To create a requirements file with the packages installed using pip.
+# To create a requirements file with the packages installed using pip. 
+  #pip freeze command outputs the installed packages and their versions in the current Python environment 
+  # > requirements.txt redirects the output of pip freeze to a file called requirements.txt. This file will list each package and version in the following format 'package_name==version'. 
+
 
 #2. Type:
 cat requirements.txt
-To see the contents of the new requirements file.
+# To see the contents of the new requirements file. Idea is to quickly view the contents of the file in ther terminal without opening it in an editor '
+
+  cat file.txt | grep "search_term"
+    # use grep to search for patterns in text; when combined with cat, will filter out lines containing specific strings 
+  cat file.txt | less
+    # less allows viewing of large files in a scrollable manner 
+  cat file.txt | wc -l
+    # wc: word count, used to count lines, words and bytes. -l: display lines, -w: display words, -c: count bytes (characters)
+
+  # Summary:
+    cat file.txt | grep "search_term" – Search for specific lines.
+    cat file.txt | sort – Sort the lines alphabetically.
+    cat file.txt | less – View the file in a scrollable manner.
+    cat file.txt | wc -l – Count the number of lines.
+    cat file.txt | tee output.txt – Display and write to a file.
+    cat file.txt | awk '{print $1}' – Extract the first word in each line.
+    cat file.txt | head -n 5 – Show the first 5 lines.
+    cat file.txt | tail -n 5 – Show the last 5 lines.
+    cat file.txt | tr 'a-z' 'A-Z' – Convert lowercase to uppercase.
+    cat file.txt | cut -d',' -f2 – Extract the second field from each line.
+    cat file.txt | sort | uniq – Remove duplicate lines after sorting.
+
++++
+#ls: list contents of a specified directory
+  # e.g. ls /home/user/documents 
