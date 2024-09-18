@@ -7,3 +7,78 @@ df = pd.DataFrame(data)
 
 # Jupyter Notebook - Display the DataFrame
 print(df)
+
+#iterating through rows in dataframe. Method .iterrows(): returns each row as a Pandas Series object, where "index" is the row index, and "row" is the actual data in the row
+for index, row in df.iterrows():
+    print(row['Name'], row['Age'])
+
+#df.apply() applies a function along either axis (rows or columns) of a DataFrame. Much more efficient than iterrows() as it leverages vectorized oeprations internally. Can also weave in custom functions 
+#syntax: df.apply(func, axis=0)
+
+data = {'A': [1, 2, 3],
+        'B': [4, 5, 6]}
+
+df = pd.DataFrame(data)
+
+df_sum = df.apply(sum)  # Adds values in each column
+print(df_sum)
+
+#output 
+A    6
+B    15
+dtype: int64 
+
+# CSV File - Write and read back the DataFrame. 
+df = pd.read_csv(
+    'data.csv',               # filepath or buffer
+    sep=',',                  # Column separator (default: ',')
+    header=0,                 # Row number to use as column names (default: 0)
+    names=['Col1', 'Col2'],   # Override column names
+    index_col=0,              # Column to use as the row labels (index)
+    usecols=['Col1', 'Col2'], # Subset of columns to read
+    dtype={'Col1': int, 'Col2': float},  # Specify data types
+    engine='python',          # Parser engine to use (Python or C)
+    skiprows=2,               # Skip the first 2 rows
+    skipfooter=1,             # Skip the last row (needs engine='python')
+    nrows=100,                # Read only the first 100 rows
+    na_values=['NA', 'null'], # Recognize these as NaN
+    keep_default_na=True,     # Keep default NaN values along with user-defined
+    parse_dates=['Col1'],     # Attempt to parse Col1 as date
+    dayfirst=True,            # Treat the first value as the day when parsing dates
+    infer_datetime_format=True, # Try to infer the date format
+    encoding='utf-8',         # File encoding
+    compression='infer',      # Automatically detect compression (gzip, zip, etc.)
+    thousands=',',            # Handle commas as thousands separators
+    decimal='.',              # Character for decimal points
+    error_bad_lines=False,    # Skip lines with too many fields (deprecated)
+    warn_bad_lines=True,      # Show warnings for lines with errors (deprecated)
+    skip_blank_lines=True,    # Skip blank lines
+    comment='#',              # Ignore lines starting with #
+    delim_whitespace=False,   # Use whitespace as delimiter (True or False)
+    low_memory=True,          # Process the file in chunks (useful for large files)
+    memory_map=False,         # Map file to memory to improve performance
+    float_precision='high',   # Handle floating point precision
+    mangle_dupe_cols=True     # Duplicate columns will be renamed
+)
+
+#writing dataframes to csv 
+df.to_csv(
+    'output.csv',          # Path or buffer to write to
+    sep=',',               # Field delimiter (default: ',')
+    index=True,            # Write row names (default is True)
+    header=True,           # Write column names (default is True)
+    columns=['A', 'B'],    # Write only a subset of columns
+    mode='w',              # File mode (default is 'w')
+    encoding='utf-8',      # File encoding (default: 'utf-8')
+    quoting=1,             # Control how quotes are handled (QUOTE_MINIMAL)
+    quotechar='"',         # Character used to quote fields
+    line_terminator='\n',  # Character(s) used to end lines
+    decimal='.',           # Character recognized as decimal point
+    float_format='%.2f',   # Format string for floating-point numbers
+    date_format='%Y-%m-%d',# Format string for datetime objects
+    compression='infer',   # Compression mode (e.g., 'gzip', 'bz2', 'zip', 'xz')
+    chunksize=1000,        # Write file in chunks of rows
+    mode='a',              # Append to the file instead of overwriting
+    errors='strict',       # Error handling for bad encoding (strict, replace, etc.)
+    storage_options=None   # Extra options for remote file systems
+)
