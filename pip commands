@@ -33,24 +33,36 @@ pip install requests --upgrade
 pip list
 
 +++ 
+## Create virtual environment to manage dependencies specific to project and avoid conflict between global and project-level packages 
+  # Especially if developing portable projects, where sharing dependencies leads to the following two problems: 
+      # (1) challenging to determine which packages are requirements for any given project. File may reference packages not needed for current project, when distribute these waste disk space and time. 
+      # (2) over time, will have projects that require different versions of the same package. If sharing installed packages, need to change installed version whenever change projects or update these. 
+  # Hence, better to create a unique virtual environment per project, e.g. using virtual machines and containers. 
+  # Simple way in Python is to create a Python virtual environment - packages installed here are only ringfenced to the environment, hence keeping project dependencies isolated. 
 
-# Create virtual environment to manage dependencies specific to project and avoid conflict between global and project-level packages 
-python3 -m venv my_env
-
-# Activate virtual environment
-source my_env/bin/activate 
-
-# Install packages to virtual environment
-pip install pandas
-
-# List packages installed in environment
-pip list 
-
-# Save installed packages to requirements file
-pip freeze > requirements.txt
-
-# Deactivate virtual environment 
-deactivate
+## workflow below 
+  #create directory 
+  mkdir my_first_project #creates a new directory named "my_first_project" in the current working directory
+  cd my_first_project #changes current working directory to "my_first_project"
+  pwd # print working directory 
+  
+  #create virtual directory with name "my_env"
+  python3 -m venv my_env 
+  
+  # Activate virtual environment before being able to use it
+  source my_env/bin/activate 
+  
+  # Install packages to virtual environment
+  pip install pandas
+  
+  # List packages installed in environment
+  pip list 
+  
+  # Save installed packages to requirements file
+  pip freeze > requirements.txt
+  
+  # Deactivate virtual environment 
+  deactivate
 
 +++ 
 ## Create and export a requirements file 
