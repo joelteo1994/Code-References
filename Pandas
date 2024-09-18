@@ -1,0 +1,9 @@
+import pandas as pd
+
+# Create a Pandas DataFrame 
+data = {'Name': ['John', 'Mary', 'Sarah'], 
+        'Age': [25, 32, 28]}
+df = pd.DataFrame(data) 
+
+# Jupyter Notebook - Display the DataFrame
+print(df)
