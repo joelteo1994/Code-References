@@ -30,11 +30,44 @@ my_project/
     - Use type hints for better readability and editor support 
         - E.g. def predict(x: np.ndarray) -> np.ndarray: 
 - Track Experiments Like a Scientist to ensure results are reproducible and reviewable 
-    - Use MLflow or Weights & Biases to log 
-        - Model params 
-        - Metrics 
-        - Dataset versions 
-        - Git commit hashes 
+    - Use MLflow or Weights & Biases to log (i) Model params, (ii) Metrics, (iii) Dataset versions, (iv) Git commit hashes 
+    - MLflow and Weights & Biases are both Python libraries that come with a web interface (UI) 
+        - Can use them in Python scripts or notebooks, and they automatically log your experiments. 
+        - Can then open a local or cloud dashboard to view everything 
+    - Workflow (MLflow)
+        - Install: pip install mlflow 
+        - Add to training script: import mlflow, mlflow.sklearn 
+        - Start autologging: mlflow.sklearn.autolog() #logs parameters, metrics, artifacts automatically 
+        - Initialise: with mlflow.start_run(): 
+                        model = SomeModel()
+                        model.fit(X_train, y_train)
+                        predictions = model.predict(X_test)
+        - View in UI: mlflow ui 
+            - Then go to local host (e.g. localhost5000 to view dashboard showing runs)
+    - Workflow (W&B): 
+        - pip install wandb
+        - import wandb
+        - wandb.init(project="my_model_project") #note if using Keras, PyTorch Lightning, HF etc it will hook into training loop automatically and log 
+            - training and validation loss/accuracy, epochs/batch_size/LR, system metrics (GPU usage/RAM), model files/gradients etc
+            - can also log Git commit hash + Python environment if enabled
+        - Can still log things manually, e.g. 
+            - wandb.config.learning_rate = 0.01
+            - wandb.log({"accuracy": 0.92})
+    - More information
+        - MLflow is open source tool by Databricks
+            - Logs parameters, metrics, artifacts 
+            - Storage: local, S3 or hosted MLflow server 
+            - UI: Web UI (basic)
+            - Deployment tracking: Yes
+            - Code integration: Python, R, Java 
+            - Collaboration: Needs setup 
+        - Weights & Biases: SaaS tool built by ex-Google Brain folks 
+            - Logs parameters, metrics, artifacts and has nice built-in charts
+            - Storage: W&B cloud or self-hosted
+            - UI: sleek, interactive dashboards
+            - Deployment tracking: Yes (plus model monitoring if pro)
+            - Code integration: Python, Keras, PyTorch, XGBoost, more 
+            - Collab: Ready out-of-box
 - Use Git branches to Version Control everything 
     - Branches include 
         - main: production-ready
