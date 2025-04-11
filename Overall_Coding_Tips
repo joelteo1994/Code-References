@@ -24,6 +24,7 @@ my_project/
     - main.py
     - requirements.txt
     - README.md
+    -.gitignore (this is a special file used in Git projects to tell Git which files or folders to ignore i.e. not track/include in version control. Usually includes config files, secret files, compiled code, virtual environments etc)
 - Write Clean, Documented Code 
     - Use docstrings for all functions """ insert_doc_string_here """
     - Add inline comments when necessary, but don't overload 
