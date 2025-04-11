@@ -1,0 +1,62 @@
+### Coding Tips for AI engineers 
+
+Covers everything from refactoring, readability, to testing, reproducibility, and collaboration (i.e. key elements to become production ready)
+- Refactoring (i.e. changing structure and organisation of code for improved readability and scale but without changing substance or behaviour)
+    - Keep functions short and focused (single responsibility)
+    - Name things well (saves more time than comments)
+    - Breakdown long scripts into modules (e.g. data_utils.py, modeling.py, viz.py)
+    - Avoid code duplication: reuse functions 
+    - Clean up old code after testing 
+- Write Tests Early using frameworks such as unittest
+    - Unit test your 
+        - Feature engineering functions 
+        - Model output shapes and ranges 
+        - API endpoints (e.g. prediction services) 
+- Organise project properly to help with reusability, teamwork and scaling by following standard structure such as 
+my_project/ 
+    - data/
+    - notebooks/
+    - src/ 
+        - data.utils.py
+        - modeling.py
+        - inference.py
+    - tests/
+    - main.py
+    - requirements.txt
+    - README.md
+- Write Clean, Documented Code 
+    - Use docstrings for all functions """ insert_doc_string_here """
+    - Add inline comments when necessary, but don't overload 
+    - Use type hints for better readability and editor support 
+        - E.g. def predict(x: np.ndarray) -> np.ndarray: 
+- Track Experiments Like a Scientist to ensure results are reproducible and reviewable 
+    - Use MLflow or Weights & Biases to log 
+        - Model params 
+        - Metrics 
+        - Dataset versions 
+        - Git commit hashes 
+- Use Git branches to Version Control everything 
+    - Branches include 
+        - main: production-ready
+        - dev: in-progress
+        - feature branches like feature/model-tuning 
+    - Commit atomic, meaningful chunks of work with clear messages
+    - Use .gitignore to avoid committing data, models, and logs 
+- Think in terms of pipelines 
+    - Break work into stages: ingest -> clean -> transform -> model -> serve 
+    - Use DAG tools like Airflow or Prefect to schedule & track 
+    - Aim for modular and composable code blocks 
+- Automate boring stuff 
+    - Use Makefile, nox, or tox for: 
+        - Tests
+        - Formatting (black, isort)
+        - Linting (flake8, pylint)
+    - Setup Github Actions to automate tests and checks on every push 
+- Log, Monitor, and Visualize 
+    - Use logging module - not just print()
+    - Track input/output drift with tools like Evidently AI 
+    - Built dashboards with Streamlist, Dash, or embed in notebooks 
+- Respect Data Privacy & Ethics 
+    - Never log or expose sensitive data
+    - Build explainability into models (SHAP, LIME)
+    - Regularly assess fairness, bias, and representativeness of data
