@@ -54,6 +54,7 @@ my_project/
         - Can still log things manually, e.g. 
             - wandb.config.learning_rate = 0.01
             - wandb.log({"accuracy": 0.92})
+    - Can use both MLflow and W&B in the same script (see additional notes for samply train_model.py script)
     - More information
         - MLflow is open source tool by Databricks
             - Logs parameters, metrics, artifacts 
