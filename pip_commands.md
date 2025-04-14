@@ -129,13 +129,13 @@ cat requirements.txt
 - Stands for concatenate, but most commonly used to print the contents of a file to the terminal 
 
   cat file.txt | grep "search_term"
-    # use grep to search for patterns in text; when combined with cat, will filter out lines containing specific strings 
+    - use grep to search for patterns in text; when combined with cat, will filter out lines containing specific strings 
   cat file.txt | less
-    # less allows viewing of large files in a scrollable manner 
+    - less allows viewing of large files in a scrollable manner 
   cat file.txt | wc -l
-    # wc: word count, used to count lines, words and bytes. -l: display lines, -w: display words, -c: count bytes (characters)
+    - wc: word count, used to count lines, words and bytes. -l: display lines, -w: display words, -c: count bytes (characters)
 
-  # Summary:
+- Summary:
     cat file.txt | grep "search_term" – Search for specific lines.
     cat file.txt | sort – Sort the lines alphabetically.
     cat file.txt | less – View the file in a scrollable manner.
@@ -146,8 +146,8 @@ cat requirements.txt
     cat file.txt | tail -n 5 – Show the last 5 lines.
     cat file.txt | tr 'a-z' 'A-Z' – Convert lowercase to uppercase.
     cat file.txt | cut -d',' -f2 – Extract the second field from each line.
-    cat file.txt | sort | uniq – Remove duplicate lines after sorting.
+    cat file txt | sort | uniq – Remove duplicate lines after sorting.
 
 +++
 #ls: list contents of a specified directory
-  # e.g. ls /home/user/documents 
+  - e.g. ls /home/user/documents 
