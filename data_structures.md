@@ -81,7 +81,7 @@ A concise reference for Python primitives, collections, and scientific computing
 | `pandas.Series`            | Labeled 1D structure, column or single variable                 |
 | `array.array`              | Homogeneous numeric arrays (compact alternative to list)        |
 | `heapq`                    | Priority queue based on heap queue algorithms                   |
-| `queue.Queue`              | Thread-safe FIFO queue                                          |
+| `queue.Queuegi`              | Thread-safe FIFO queue                                          |
 | `itertools`                | Functional-style iterators for looping logic                    |
 | `functools.lru_cache`      | Caching wrapper to memoize expensive function calls             |
 
