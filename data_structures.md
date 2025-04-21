@@ -94,6 +94,153 @@ A concise reference for Python primitives, collections, and scientific computing
 
 ---
 
+# 📘 Python Core Collections Cheatsheet
+
+A focused reference on Python's essential built-in collection types:
+`tuple`, `list`, `set`, `dict`, `range`, `enumerate`, `zip`
+
+---
+
+## ✅ Summary Table
+
+| Type        | Ordered | Mutable | Allows Duplicates | Indexable | Key Use Case                          |
+|-------------|---------|---------|-------------------|-----------|---------------------------------------|
+| `tuple`     | ✅       | ❌       | ✅                 | ✅         | Fixed records, coordinates, keys      |
+| `list`      | ✅       | ✅       | ✅                 | ✅         | General-purpose sequence              |
+| `set`       | ❌       | ✅       | ❌                 | ❌         | Unique membership, deduplication      |
+| `dict`      | ✅*      | ✅       | ❌ (keys)          | ✅ (keys) | Fast key-value mapping                |
+| `range`     | ✅       | ❌       | ✅                 | ✅         | Memory-efficient integer iteration    |
+| `enumerate` | ✅       | ❌       | ✅                 | ✅         | Indexed iteration in `for` loops      |
+| `zip`       | ✅       | ❌       | ✅                 | ❌         | Parallel iteration in `for` loops     |
+
+---
+
+## 🔹 `tuple` Methods
+
+```python
+t = (1, 2, 3)
+```
+
+| Method         | Description                        | Output                | Alters Original? |
+|----------------|------------------------------------|------------------------|-------------------|
+| `t[0]`         | Indexing                           | `1`                    | ❌                |
+| `t.index(2)`   | Find index of element              | `1`                    | ❌                |
+| `t.count(3)`   | Count occurrences                  | `1`                    | ❌                |
+| `t + (4,)`     | Concatenate with another tuple     | `(1, 2, 3, 4)`         | ❌ (new object)   |
+
+---
+
+## 🔸 `list` Methods
+
+```python
+lst = [1, 2, 3]
+```
+
+| Method            | Description                          | Output / Effect         | Alters Original? |
+|-------------------|--------------------------------------|--------------------------|-------------------|
+| `lst.append(4)`   | Add item to end                      | `[1, 2, 3, 4]`           | ✅                |
+| `lst.extend([5,6])` | Append multiple items              | `[1, 2, 3, 4, 5, 6]`     | ✅                |
+| `lst.insert(1, 10)` | Insert at index 1                  | `[1, 10, 2, 3, 4, 5, 6]` | ✅                |
+| `lst.pop()`       | Remove and return last item         | `6`                      | ✅                |
+| `lst.remove(10)`  | Remove first occurrence of 10       | `[1, 2, 3, 4, 5]`        | ✅                |
+| `lst.index(3)`    | Get index of 3                      | `2`                      | ❌                |
+| `lst.count(4)`    | Count occurrences of 4              | `1`                      | ❌                |
+| `lst.sort()`      | Sort in-place                       | `[1, 2, 3, 4, 5]`        | ✅                |
+| `sorted(lst)`     | Return sorted copy                  | `[1, 2, 3, 4, 5]`        | ❌ (new object)   |
+| `len(lst)`        | Number of elements                  | `5`                      | ❌                |
+
+---
+
+## 🪪 `set` Methods
+
+```python
+s = {1, 2, 3}
+```
+
+| Method             | Description                          | Output / Effect        | Alters Original? |
+|--------------------|--------------------------------------|-------------------------|-------------------|
+| `s.add(4)`         | Add an element                      | `{1, 2, 3, 4}`           | ✅                |
+| `s.update([5, 6])` | Add multiple elements               | `{1, 2, 3, 4, 5, 6}`     | ✅                |
+| `s.remove(1)`      | Remove element or raise error       | `{2, 3, 4, 5, 6}`        | ✅                |
+| `s.discard(2)`     | Remove element if exists            | `{3, 4, 5, 6}`           | ✅                |
+| `s.clear()`        | Remove all elements                 | `set()`                 | ✅                |
+| `len(s)`           | Count of elements                   | Integer (e.g. `4`)       | ❌                |
+| `3 in s`           | Membership test                     | `True` / `False`         | ❌                |
+| `set([1, 1, 2])`   | Remove duplicates from list         | `{1, 2}`                 | ❌ (new object)   |
+
+---
+
+## 📛 `dict` Methods
+
+```python
+d = {'a': 1, 'b': 2}
+```
+
+| Method              | Description                        | Output / Effect        | Alters Original? |
+|---------------------|------------------------------------|-------------------------|-------------------|
+| `d['c'] = 3`        | Assign value to key                | `{'a': 1, 'b': 2, 'c': 3}` | ✅              |
+| `d.get('d', 0)`     | Get value or default               | `0`                      | ❌                |
+| `d.pop('a')`        | Remove key and return value        | `1`, `{'b': 2, 'c': 3}`   | ✅                |
+| `d.update({'e': 5})`| Add or overwrite key-value pairs  | `{'b': 2, 'c': 3, 'e': 5}`| ✅                |
+| `d.keys()`          | View all keys                      | `dict_keys(['b', 'c', 'e'])` | ❌           |
+| `d.values()`        | View all values                    | `dict_values([2, 3, 5])` | ❌                |
+| `d.items()`         | View all key-value pairs           | `dict_items([('b', 2), ('c', 3), ('e', 5)])` | ❌ |
+| `len(d)`            | Number of key-value pairs          | `3`                      | ❌                |
+
+---
+
+## 🚿 `range` Methods
+
+```python
+r = range(1, 6)
+```
+
+| Method       | Description                          | Output                | Alters Original? |
+|--------------|--------------------------------------|------------------------|-------------------|
+| `range(...)` | Create range object                  | `range(1, 6)`          | ❌                |
+| `list(r)`    | Convert to list                      | `[1, 2, 3, 4, 5]`       | ❌ (new object)   |
+| `r[0]`       | Indexing                             | `1`                    | ❌                |
+| `len(r)`     | Number of values                     | `5`                    | ❌                |
+
+> 🔁 Typically used in `for` loops for controlled iteration.
+
+---
+
+## 🔢 `enumerate`
+
+```python
+words = ['a', 'b']
+```
+
+| Method / Use           | Description                          | Output                          | Alters Original? |
+|------------------------|--------------------------------------|----------------------------------|-------------------|
+| `enumerate(words)`     | Add index to iterable                | `enumerate` object               | ❌                |
+| `list(enumerate(...))` | Convert to list of (index, item)    | `[(0, 'a'), (1, 'b')]`           | ❌ (new object)   |
+
+> 🔁 Best used in `for` loops to access index and value at once.
+
+---
+
+## 🔗 `zip`
+
+```python
+names = ['a', 'b']
+scores = [10, 20]
+```
+
+| Method / Use       | Description                          | Output                          | Alters Original? |
+|--------------------|--------------------------------------|----------------------------------|-------------------|
+| `zip(names, scores)`| Combine iterables into pairs        | `zip` object                     | ❌                |
+| `list(zip(...))`   | Convert to list of tuples            | `[('a', 10), ('b', 20)]`         | ❌ (new object)   |
+
+> 🔁 Ideal for `for` loops to iterate in parallel.
+
+---
+
+> 🧠 Tip: Lists and dicts are go-to structures; use sets for uniqueness, tuples for fixed pairs, and zip/enumerate/range in loops.
+
+---
+
 ## 🧪 Optional Extensions (Not Covered Here)
 
 - `TensorFlow`: `tf.Tensor`, `tf.Variable`
